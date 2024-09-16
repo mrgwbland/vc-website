@@ -76,9 +76,10 @@ function movePiece(startRow, startCol, destRow, destCol) {
     const piece = initialBoard[startRow][startCol];
     const destPiece = initialBoard[destRow][destCol];
 
-    if (destPiece && (destPiece.toLowerCase() === piece.toLowerCase())) {
-        // Cannot capture friendly piece
-        return;
+    if ((piece === piece.toUpperCase() && destPiece === destPiece.toUpperCase()) ||
+    (piece === piece.toLowerCase() && destPiece === destPiece.toLowerCase()))
+    {
+    return //Cannot capture piece of the same colour
     }
 
     // Move the piece
@@ -98,18 +99,19 @@ function movePiece(startRow, startCol, destRow, destCol) {
 
 const openingsData = `
 P1333;d4;White immediately takes the centre and goes for the royal pawn
-P1333P6444;d4, d5
-P1333P6444P3343;Classical Opening
+P1333P6444;Classical Opening
+P1333P6444P3343;Classical Opening, d5
+P1333P6444P3343P4434P1131;Classical Opening, Main line
 P1333P6444P3343P6141;Classical Opening, Dutch Defense
 P1333P6444P3343P6646;Classical Opening, Eastern Defense
 P1333P6141;German Defense
 P1333P6141P3343;German Defense, Standard Line
 P1333P6141P3343P6646;German Defense, Standard Line, g5
 P1333P6141P1121;German Defense, Bishop Variation
-P1333P6141P1121P6646B0011N7251B1120P6444P3343;West Wallaby Gambit;I played this novel gambit in the first game I ever beat Jack and have thus named this gambit after myself
+P1333P6141P1121P6646B0011N7251B1120P6444P3343;West Wallaby Gambit;I played this gambit in the first game I ever beat Jack and have thus named this gambit after myself
 P1333P6141P1131;German Defense, Grandmaster's Gambit
 P1333P6141P1131P4131;German Defense, Grandmaster's Gambit Accepted
-P1636;g4
+P1636;Bishop's Opening
 P1636P6656;g4: Traditional Line
 P1636P6646;Tio Countergambit
 P1636P6646P3646;Tio Countergambit Accepted
