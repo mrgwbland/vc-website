@@ -75,11 +75,13 @@ function selectSquare(row, col) {
 function movePiece(startRow, startCol, destRow, destCol) {
     const piece = initialBoard[startRow][startCol];
     const destPiece = initialBoard[destRow][destCol];
-
-    if ((piece === piece.toUpperCase() && destPiece === destPiece.toUpperCase()) ||
-    (piece === piece.toLowerCase() && destPiece === destPiece.toLowerCase()))
+    if(destPiece !== '')
     {
-    return //Cannot capture piece of the same colour
+        if ((piece === piece.toUpperCase() && destPiece === destPiece.toUpperCase()) ||
+        (piece === piece.toLowerCase() && destPiece === destPiece.toLowerCase()))
+        {
+        return //Cannot capture piece of the same colour
+        }
     }
 
     // Move the piece
