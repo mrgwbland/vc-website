@@ -99,11 +99,11 @@ function movePiece(startRow, startCol, destRow, destCol) {
 
 const openingsData = `
 P1333;d4;White immediately takes the centre and goes for the royal pawn
-P1333P6444;Classical Opening
-P1333P6444P3343;Classical Opening, d5
-P1333P6444P3343P4434P1131;Classical Opening, Main line
-P1333P6444P3343P6141;Classical Opening, Dutch Defense
-P1333P6444P3343P6646;Classical Opening, Eastern Defense
+P1333P6444;Classical Game
+P1333P6444P3343;Classical Game, d5
+P1333P6444P3343P4434P1131;Classical Game, Main line
+P1333P6444P3343P6141;Classical Game, Dutch Defense
+P1333P6444P3343P6646;Classical Game, Eastern Defense
 P1333P6141;German Defense
 P1333P6141P3343;German Defense, Standard Line
 P1333P6141P3343P6646;German Defense, Standard Line, g5
