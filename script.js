@@ -38,7 +38,6 @@ function createBoard() {
     board.innerHTML = '';
     for (let row = 0; row < 8; row++) {
         for (let col = 0; col < 8; col++) {
-            // Show the board with white starting at the bottom
             const actualRow = isRotated ? row : 7 - row;  // When not rotated, white is at the bottom
             const actualCol = isRotated ? 7 - col : col;  // Flip column if rotated
 
@@ -76,7 +75,7 @@ function selectSquare(row, col) {
 function movePiece(startRow, startCol, destRow, destCol) {
     const piece = initialBoard[startRow][startCol];
     const destPiece = initialBoard[destRow][destCol];
-    if(destPiece !== '')
+    if(destPiece !== '')//If moving to a square without a piece, skip this check
     {
         if ((piece === piece.toUpperCase() && destPiece === destPiece.toUpperCase()) ||
         (piece === piece.toLowerCase() && destPiece === destPiece.toLowerCase()))
@@ -126,7 +125,7 @@ function undoMove() {
 }
 
 const openingsData = `
-P1333;d4;White immediately takes the centre and goes for the royal pawn
+P1333;Rook Pawn Opening;White immediately takes the centre and goes for the royal pawn
 P1333P6444;Classical Game
 P1333P6444P3343;Classical Game, d5
 P1333P6444P3343P4434P1131;Classical Game, Main line
@@ -146,6 +145,8 @@ P1636P6646P3646;Tio Countergambit Accepted
 P1636P6646P3646B7755;Tio Countergambit Accepted, Traditional Line
 P1636P6646P3646N7554;Tio Countergambit Accepted, Modern Variation
 P1636P6646S0626;Tio Countergambit Declined, Sergeant Variation
+P1131;Rookside Game
+P1131P6141;Rookside gambit
 `;
 
 function checkOpening() {
@@ -191,11 +192,11 @@ document.getElementById('reset-button').addEventListener('click', () => {
         ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
         ['b', 's', 'n', 'k', 'r', 'n', 's', 'b']
     ];
-    currentGameString = '';
+    currentGameString = '';// Reset everything:
     whiteToMove = true;
-    moveHistory = []; // Clear move history
+    moveHistory = []; 
     createBoard();
-    checkOpening();    
+    checkOpening(); //Should always evaluate to "starting position"
     gameStringDisplay.textContent = currentGameString || 'None';
 });
 
