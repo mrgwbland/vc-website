@@ -137,7 +137,11 @@ function checkOpening() {
             matchedInfo = openingInfo; // Capture additional info if available
         }
     }
-
+    console.log(currentGameString);
+    if (currentGameString === '')
+    {        
+        matchedOpening = 'Starting Position';
+    }
     // Display the matched opening name and info
     document.getElementById('opening-name').textContent = `Opening: ${matchedOpening}`;
     document.getElementById('opening-info-content').textContent = matchedInfo || 'None'; // Display extra info if available
@@ -165,10 +169,10 @@ document.getElementById('reset-button').addEventListener('click', () => {
         ['b', 's', 'n', 'k', 'r', 'n', 's', 'b']
     ];
     currentGameString = '';
-    gameStringDisplay.textContent = 'None';
     whiteToMove = true;
     createBoard();
-    info.textContent = 'None';
+    checkOpening();    
+    gameStringDisplay.textContent = currentGameString || 'None';
 });
 
 // Initial board setup

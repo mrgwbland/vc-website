@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Villagers Chess Opening Book</title>
     <style>
-        body {
+        html, body {
+            height: 100%;
             margin: 0;
+        }
+
+        body {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
+            flex-direction: column;
             font-family: Arial, sans-serif;
         }
 
         .container {
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -107,6 +109,15 @@
         #opening-info {
             margin-left: 30px;
         }
+
+        footer {
+            padding: 10px;
+            font-size: 14px;
+            color: #666;
+            background-color: #fff;
+            box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -115,14 +126,14 @@
         <div class="main">
             <div id="site-info" class="info-panel">
                 <h3>How to Use</h3>
-                <p>1. Make moves by clicking pieces and moving them to the desired square.</p>
+                <p>1. Make moves by clicking pieces and moving them to the desired square. Moves are not checked for legailty so be careful!</p>
                 <p>2. The moves are recorded and checked against an opening database.</p>
                 <p>3. Rotate the board to view from Black's perspective.</p>
                 <p>4. Reset the board at any time to restart.</p>
             </div>
             <div>
                 <div id="board"></div>
-                <div id="opening-name">Opening: None</div>
+                <div id="opening-name">Opening: Starting Position</div>
                 <div id="game-string">Current Game String: <span id="game-string-value">None</span></div>
                 <div class="controls">
                     <button id="flip-button">Rotate Board</button>
@@ -135,7 +146,9 @@
             </div>
         </div>
     </div>
-
+    <footer>
+        Made by George Bland | Message me on chess.com here <a href="https://www.chess.com/member/62westwallaby" target="_blank">62WestWallaby</a>!
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
