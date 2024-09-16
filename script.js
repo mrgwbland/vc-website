@@ -32,6 +32,7 @@ const sprites = {
 let selectedPiece = null;
 let whiteToMove = true;
 let isRotated = false;
+let moveHistory = []; // Stack to keep track of moves
 
 function createBoard() {
     board.innerHTML = '';
@@ -80,9 +81,12 @@ function movePiece(startRow, startCol, destRow, destCol) {
         if ((piece === piece.toUpperCase() && destPiece === destPiece.toUpperCase()) ||
         (piece === piece.toLowerCase() && destPiece === destPiece.toLowerCase()))
         {
-        return //Cannot capture piece of the same colour
+        return; // Cannot capture piece of the same color
         }
     }
+
+    // Save the move to history for undo functionality
+    moveHistory.push({ piece, startRow, startCol, destRow, destCol, capturedPiece: destPiece });
 
     // Move the piece
     initialBoard[destRow][destCol] = piece;
@@ -93,6 +97,28 @@ function movePiece(startRow, startCol, destRow, destCol) {
     gameStringDisplay.textContent = currentGameString || 'None';
 
     // Switch turns
+    whiteToMove = !whiteToMove;
+
+    createBoard();
+    checkOpening();
+}
+
+function undoMove() {
+    if (moveHistory.length === 0) return; // No moves to undo
+
+    const lastMove = moveHistory.pop();
+    const { piece, startRow, startCol, destRow, destCol, capturedPiece } = lastMove;
+
+    // Undo the move
+    initialBoard[startRow][startCol] = piece;
+    initialBoard[destRow][destCol] = capturedPiece || ''; // Restore the captured piece if there was one
+
+    // Remove the last move from the game string
+    const moveString = piece.toUpperCase() + startRow + startCol + destRow + destCol;
+    currentGameString = currentGameString.slice(0, -moveString.length);
+    gameStringDisplay.textContent = currentGameString || 'None';
+
+    // Switch turns back
     whiteToMove = !whiteToMove;
 
     createBoard();
@@ -141,20 +167,13 @@ function checkOpening() {
             matchedInfo = openingInfo; // Capture additional info if available
         }
     }
-    console.log(currentGameString);
-    if (currentGameString === '')
-    {        
+    if (currentGameString === '') {        
         matchedOpening = 'Starting Position';
     }
     // Display the matched opening name and info
     document.getElementById('opening-name').textContent = `Opening: ${matchedOpening}`;
     document.getElementById('opening-info-content').textContent = matchedInfo || 'None'; // Display extra info if available
 }
-
-
-
-
-
 
 document.getElementById('flip-button').addEventListener('click', () => {
     isRotated = !isRotated;
@@ -174,9 +193,14 @@ document.getElementById('reset-button').addEventListener('click', () => {
     ];
     currentGameString = '';
     whiteToMove = true;
+    moveHistory = []; // Clear move history
     createBoard();
     checkOpening();    
     gameStringDisplay.textContent = currentGameString || 'None';
+});
+
+document.getElementById('undo-button').addEventListener('click', () => {
+    undoMove();
 });
 
 // Initial board setup
