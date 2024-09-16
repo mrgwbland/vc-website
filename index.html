@@ -23,6 +23,17 @@
             text-align: center;
         }
 
+        #title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .main {
+            display: flex;
+            align-items: flex-start;
+        }
+
         #board {
             display: grid;
             grid-template-columns: repeat(8, 60px);
@@ -75,16 +86,53 @@
         .controls {
             margin-top: 20px;
         }
+
+        .info-panel {
+            width: 200px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .info-panel h3 {
+            margin-top: 0;
+        }
+
+        #site-info {
+            margin-right: 30px;
+        }
+
+        #opening-info {
+            margin-left: 30px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div id="board"></div>
-        <div id="opening-name">None</div>
-        <div id="game-string">Current Game String: <span id="game-string-value">None</span></div>
-        <div class="controls">
-            <button id="flip-button">Flip Board</button>
-            <button id="reset-button">Reset Board</button>
+        <div id="title">Online Villagers Chess Opening Book</div>
+        <div class="main">
+            <div id="site-info" class="info-panel">
+                <h3>How to Use</h3>
+                <p>1. Make moves by clicking pieces and moving them to the desired square.</p>
+                <p>2. The moves are recorded and checked against an opening database.</p>
+                <p>3. Rotate the board to view from Black's perspective.</p>
+                <p>4. Reset the board at any time to restart.</p>
+            </div>
+            <div>
+                <div id="board"></div>
+                <div id="opening-name">Opening: None</div>
+                <div id="game-string">Current Game String: <span id="game-string-value">None</span></div>
+                <div class="controls">
+                    <button id="flip-button">Rotate Board</button>
+                    <button id="reset-button">Reset Board</button>
+                </div>
+            </div>
+            <div id="opening-info" class="info-panel">
+                <h3>Opening Info</h3>
+                <div id="opening-info-content">None</div>
+            </div>
         </div>
     </div>
 
