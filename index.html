@@ -1,1 +1,93 @@
-<h1>Villagers Chess Opening Explorer</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villagers Chess Opening Book</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #board {
+            display: grid;
+            grid-template-columns: repeat(8, 60px);
+            grid-template-rows: repeat(8, 60px);
+            gap: 1px;
+            background-color: #333;
+        }
+
+        .square {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .white {
+            background-color: #f0d9b5;
+        }
+
+        .black {
+            background-color: #b58863;
+        }
+
+        .piece {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        #opening-name {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #game-string {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="board"></div>
+        <div id="opening-name">None</div>
+        <div id="game-string">Current Game String: <span id="game-string-value">None</span></div>
+        <div class="controls">
+            <button id="flip-button">Flip Board</button>
+            <button id="reset-button">Reset Board</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
