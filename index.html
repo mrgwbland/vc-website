@@ -118,6 +118,16 @@
             box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
+        .info-icon {
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .info-icon:hover {
+            color: #000;
+        }        
     </style>
 </head>
 <body>
@@ -126,7 +136,7 @@
         <div class="main">
             <div id="site-info" class="info-panel">
                 <h3>How to Use</h3>
-                <p>1. Make moves by clicking pieces and moving them to the desired square. Moves are not checked for legailty so be careful!</p>
+                <p>1. Make moves by clicking pieces and moving them to the desired square. Moves are not validated so make sure you play the move you intend!</p>
                 <p>2. The moves are recorded and checked against an opening database.</p>
                 <p>3. Rotate the board to view from Black's perspective.</p>
                 <p>4. Reset the board at any time to restart.</p>
@@ -135,7 +145,12 @@
             <div>
                 <div id="board"></div>
                 <div id="opening-name">Opening: Starting Position</div>
-                <div id="game-string">Current Game String: <span id="game-string-value">None</span></div>
+                <div id="game-string">
+                    <span>Current Game String: <span id="game-string-value">None</span></span>
+                    <span class="info-icon" title="This is a form of notation which is easy for the website to understand. It is formatted as the piece type, the start coordinates, then  the end coordinates (e.g., P1333 means a Soldier moved from d2 to d4).">
+                        &#9432;
+                    </span>
+                </div>
                 <div class="controls">
                     <button id="flip-button">Rotate Board</button>
                     <button id="reset-button">Reset Board</button>

@@ -131,6 +131,7 @@ P1333P6444P3343;Classical Game, d5
 P1333P6444P3343P4434P1131;Classical Game, Main line
 P1333P6444P3343P6141;Classical Game, Dutch Defense
 P1333P6444P3343P6646;Classical Game, Eastern Defense
+P1333P6646;Rook Pawn Opening, Rookside Defense
 P1333P6141;German Defense
 P1333P6141P3343;German Defense, Standard Line
 P1333P6141P3343P6646;German Defense, Standard Line, g5
@@ -138,12 +139,15 @@ P1333P6141P1121;German Defense, Bishop Variation
 P1333P6141P1121P6646B0011N7251B1120P6444P3343;West Wallaby Gambit;I played this gambit in the first game I ever beat Jack and have thus named this gambit after myself
 P1333P6141P1131;German Defense, Grandmaster's Gambit
 P1333P6141P1131P4131;German Defense, Grandmaster's Gambit Accepted
+P1333P6141P1131S7151;German Defense, Grandmaster's Gambit, Sergeant Variation
+P1333P6141P1131P6646;German Defense, Grandmaster's Gambit Declined
 P1636;Bishop's Opening
 P1636P6656;g4: Traditional Line
 P1636P6646;Tio Countergambit
 P1636P6646P3646;Tio Countergambit Accepted
 P1636P6646P3646B7755;Tio Countergambit Accepted, Traditional Line
 P1636P6646P3646N7554;Tio Countergambit Accepted, Modern Variation
+1636P6646P1333;Tio Countergambit Declined
 P1636P6646S0626;Tio Countergambit Declined, Sergeant Variation
 P1131;Rookside Game
 P1131P6141;Rookside gambit
