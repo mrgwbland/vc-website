@@ -123,7 +123,7 @@ function undoMove() {
     createBoard();
     checkOpening();
 }
-
+//Most openings provided by jackityjackjack on chess.com
 const openingsData = `
 P1333;Rook Pawn Opening;White immediately takes the centre and goes for the royal pawn
 P1333P6444;Classical Game
@@ -147,8 +147,10 @@ P1636P6646;Tio Countergambit
 P1636P6646P3646;Tio Countergambit Accepted
 P1636P6646P3646B7755;Tio Countergambit Accepted, Traditional Line
 P1636P6646P3646N7554;Tio Countergambit Accepted, Modern Variation
+P1636P6646P3646N7554P4656N5435B0734;Tio Countergambit Accepted, Modern, Pesky Bishop Variation
 1636P6646P1333;Tio Countergambit Declined
 P1636P6646S0626;Tio Countergambit Declined, Sergeant Variation
+P1636P6252;Bulgarian Gambit
 P1131;Rookside Game
 P1131P6141;Rookside gambit
 `;
