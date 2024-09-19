@@ -128,12 +128,26 @@ const openingsData = `
 P1333;Rook Pawn Opening;White immediately takes the centre and goes for the royal pawn
 P1333P6444;Classical Game
 P1333P6444P3343;Classical Game, d5
+P1333P6444P3343P4434;Classical Game, Main line
 P1333P6444P3343P4434P1131;Classical Game, Main line
 P1333P6444P3343P6141;Classical Game, Dutch Defense
 P1333P6444P3343P6646;Classical Game, Eastern Defense
-P1333P6646;Rook Pawn Opening, Rookside Defense
+P1333P6444P1131;Classical Game, Canadian Variation
+P1333P6444P1636;Classical Game, Bulgarian Variation
+P1333P6444P1636P4434P1131P6141;Classical Game, Bulgarian Variation, Eagle Gambit
+P1333P6444P1636P4434P1131P6141P3141;Classical Game, Bulgarian Variation, Eagle Gambit Accepted
+P1333P6444P1636P6646;Tio Countergambit Declined
+P1333P6646;Rookside Defense
+P1333P6646P3343;Rookside Defense, Advance Variation
+P1333P6646P1626;Rookside Defense, Bishop Variation
+P1333P6646P1131;Rookside Defense, Victorian Variation
+P1333P6646P1131P6141B0022P6444P3343P4131B2231P4434;Rookside Defense, Victorian Variation, Main Line
+P1333P6646P1636;Paris Gambit
+P1333P6646P1636P4636;Paris Gambit Accepted
+P1333P6646P1636S7656;Paris Gambit, Sergeant Variation
 P1333P6141;German Defense
 P1333P6141P3343;German Defense, Standard Line
+P1333P6141P3343P6444;German Defense, Standard Line, Spike Variation
 P1333P6141P3343P6646;German Defense, Standard Line, g5
 P1333P6141P1121;German Defense, Bishop Variation
 P1333P6141P1121P6646B0011N7251B1120P6444P3343;West Wallaby Gambit;I played this gambit in the first game I ever beat Jack and have thus named this gambit after myself
@@ -209,6 +223,91 @@ document.getElementById('reset-button').addEventListener('click', () => {
 document.getElementById('undo-button').addEventListener('click', () => {
     undoMove();
 });
+
+// Copy the current game string to clipboard
+document.getElementById('copy-button').addEventListener('click', () => {
+    const gameString = currentGameString || 'None';
+    navigator.clipboard.writeText(gameString).then(() => {
+        alert('Game string copied to clipboard: ' + gameString);
+    }).catch(err => {
+        alert('Failed to copy game string: ', err);
+    });
+});
+
+document.getElementById('paste-button').addEventListener('click', () => {
+    const pastedString = prompt("Paste the game string here:");
+    if (pastedString) {
+        // Update the current game string to the pasted one
+        currentGameString = pastedString;
+        gameStringDisplay.textContent = currentGameString;
+
+        // Reset the board to the initial state
+        initialBoard = [
+            ['B', 'S', 'N', 'R', 'K', 'N', 'S', 'B'],
+            ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
+            ['', '', '', '', '', '', '', ''],
+            ['', '', '', '', '', '', '', ''],
+            ['', '', '', '', '', '', '', ''],
+            ['', '', '', '', '', '', '', ''],
+            ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
+            ['b', 's', 'n', 'k', 'r', 'n', 's', 'b']
+        ];
+
+        // Apply the pasted game string move by move
+        for (let i = 0; i < pastedString.length; i += 5) {
+            const piece = pastedString[i]; // The piece to move (always uppercase in the notation)
+            const startRow = parseInt(pastedString[i + 1], 10);
+            const startCol = parseInt(pastedString[i + 2], 10);
+            const destRow = parseInt(pastedString[i + 3], 10);
+            const destCol = parseInt(pastedString[i + 4], 10);
+
+            // Check the case of the piece on the source square to determine if it's white (uppercase) or black (lowercase)
+            const actualPiece = initialBoard[startRow][startCol];
+
+            // Move the piece with the correct color (case)
+            initialBoard[destRow][destCol] = actualPiece;
+            initialBoard[startRow][startCol] = ''; // Empty the starting square
+        }
+
+        // Redraw the board with the new state
+        createBoard();
+
+        // Check for any matching opening after pasting
+        checkOpening();
+    }
+});
+
+
+
+// Set the board based on the pasted game string
+function setBoardFromGameString(gameString) {
+    // Reset the board before applying moves
+    initialBoard = [
+        ['B', 'S', 'N', 'R', 'K', 'N', 'S', 'B'],
+        ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
+        ['', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', ''],
+        ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
+        ['b', 's', 'n', 'k', 'r', 'n', 's', 'b']
+    ];
+
+    // Process the game string to apply moves
+    for (let i = 0; i < gameString.length; i += 5) {
+        const piece = gameString[i];
+        const startRow = parseInt(gameString[i+1]);
+        const startCol = parseInt(gameString[i+2]);
+        const destRow = parseInt(gameString[i+3]);
+        const destCol = parseInt(gameString[i+4]);
+
+        initialBoard[destRow][destCol] = piece;
+        initialBoard[startRow][startCol] = '';
+    }
+
+    // Re-render the board after applying the moves
+    createBoard();
+}
 
 // Initial board setup
 createBoard();
