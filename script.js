@@ -150,7 +150,8 @@ P1333P6141P3343;German Defense, Standard Line
 P1333P6141P3343P6444;German Defense, Standard Line, Spike Variation
 P1333P6141P3343P6646;German Defense, Standard Line, g5
 P1333P6141P1121;German Defense, Bishop Variation
-P1333P6141P1121P6646B0011N7251B1120P6444P3343;West Wallaby Gambit;I played this gambit in the first game I ever beat Jack and have thus named this gambit after myself
+P1333P6141P1121P6646B0011N7251B1120;Dranyam Attack
+P1333P6141P1121P6646B0011N7251B1120P6444P3343;Wallaby Gambit;I played this gambit in the first game I ever beat Jack and have thus named this gambit after myself
 P1333P6141P1131;German Defense, Grandmaster's Gambit
 P1333P6141P1131P4131;German Defense, Grandmaster's Gambit Accepted
 P1333P6141P1131S7151;German Defense, Grandmaster's Gambit, Sergeant Variation
@@ -167,6 +168,7 @@ P1636P6646S0626;Tio Countergambit Declined, Sergeant Variation
 P1636P6252;Bulgarian Gambit
 P1131;Rookside Game
 P1131P6141;Rookside gambit
+P1636P6656P1333P6444N0526B7766P1131B6657;Dranyam Defense
 `;
 
 function checkOpening() {
@@ -269,6 +271,10 @@ document.getElementById('paste-button').addEventListener('click', () => {
             initialBoard[startRow][startCol] = ''; // Empty the starting square
         }
 
+        // Determine whose turn it is after processing the moves
+        const moveCount = pastedString.length / 5;
+        whiteToMove = (moveCount % 2 === 0); // Even moves: white's turn; Odd moves: black's turn
+
         // Redraw the board with the new state
         createBoard();
 
@@ -276,6 +282,7 @@ document.getElementById('paste-button').addEventListener('click', () => {
         checkOpening();
     }
 });
+
 
 
 
